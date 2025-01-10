@@ -6,7 +6,6 @@
 # all focused around the bullshit that goes into making the plots
 
 #==============================================================================#
-
 from numpy import *
 from numpy.random import *
 import matplotlib as mpl
@@ -20,7 +19,7 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 import matplotlib.cm as cm
 from scipy.stats import norm
 import matplotlib.patheffects as pe
-
+import japanize_matplotlib
 pltdir = 'plots/'
 pltdir_png = pltdir+'plots_png/'
 
@@ -62,7 +61,7 @@ def line_background(lw,col):
 
 
 
-def FilledLimit(ax,dat,text_label='',col='ForestGreen',edgecolor='k',zorder=1,linestyle='-',\
+def FilledLimit(ax,dat,text_label='',col='ForestGreen',edgecolor='None',zorder=1,linestyle='-',\
                     lw=2,y2=1e0,edgealpha=0.6,text_on=False,text_pos=[0,0],\
                     ha='left',va='top',clip_on=True,fs=15,text_col='k',rotation=0,facealpha=1,path_effects=None,textalpha=1):
     plt.fill_between(dat[:,0],dat[:,1],y2=y2,edgecolor=None,facecolor=col,alpha=facealpha,zorder=zorder)
@@ -72,7 +71,7 @@ def FilledLimit(ax,dat,text_label='',col='ForestGreen',edgecolor='k',zorder=1,li
             ha=ha,va=va,clip_on=clip_on,rotation=rotation,rotation_mode='anchor',path_effects=path_effects,alpha=textalpha)
     return
 
-def UnfilledLimit(ax,dat,text_label='',col='ForestGreen',edgecolor='k',zorder=1,\
+def UnfilledLimit(ax,dat,text_label='',col='ForestGreen',edgecolor='None',zorder=1,\
                     lw=2,y2=1e0,edgealpha=0.6,text_on=False,text_pos=[0,0],\
                     ha='left',va='top',clip_on=True,fs=15,text_col='k',rotation=0,facealpha=1,\
                      linestyle='--'):
@@ -231,9 +230,9 @@ def FigSetup(xlab=r'$m_a$ [eV]',ylab='',\
 
 #==============================================================================#
 class AxionPhoton():
-    def QCDAxion(ax,C_logwidth=10,KSVZ_on=True,DFSZ_on=True,cmap=cm.YlOrBr,fs=18,RescaleByMass=False,text_on=True,
+    def QCDAxion(ax,C_logwidth=10,KSVZ_on=True,DFSZ_on=True,cmap=cm.binary,fs=18,RescaleByMass=False,text_on=True,
                 thick_lines=False,C_center=1,C_width=0.8,
-                C_upper = 44/3-1.92,C_lower = abs(5/3-1.92),level_max = 4,nlevels=20,alpha=0.2,line_color='#a35c2f',
+                C_upper = 44/3-1.92,C_lower = abs(5/3-1.92),level_max = 4,nlevels=20,alpha=0.2,line_color='#707070',
                 KSVZ_label_mass=1e-8,DFSZ_label_mass=5e-8,vmax=0.9):
         if RescaleByMass:
             rs1 = 1.0
@@ -273,8 +272,8 @@ class AxionPhoton():
             ga = 2e-10*m
             cols = cmap(linspace(0.1,0.45,nlevels))
             levels = (linspace(1,sqrt(level_max),nlevels))**2
-            for i in range(nlevels-1):
-                ax.fill_between(m,C_upper*ga/levels[i],C_lower*ga*levels[i],alpha=alpha,color=cols[i,:],zorder=-1000,lw=0)
+            #for i in range(nlevels-1):
+                #ax.fill_between(m,C_upper*ga/levels[i],C_lower*ga*levels[i],alpha=alpha,color=cols[i,:],zorder=-1000,lw=0)
 
             # QCD Axion models
             rot = 45.0
@@ -282,7 +281,7 @@ class AxionPhoton():
             m2 = array([1e-9,5e-8])
             if KSVZ_on:
                 if thick_lines:
-                    plt.plot(m,g_x(KSVZ,m),'-',linewidth=5,color='k',zorder=0)
+                    plt.plot(m,g_x(KSVZ,m),'-',linewidth=5,color='#707070',zorder=0)
                     plt.plot(m,g_x(KSVZ,m),'-',linewidth=3,color=line_color,zorder=0)
                 else:
                     plt.plot(m,g_x(KSVZ,m),'-',linewidth=2,color=line_color,zorder=0)
@@ -290,7 +289,7 @@ class AxionPhoton():
                     plt.text(KSVZ_label_mass,g_x(KSVZ,KSVZ_label_mass)*1.05,r'{\bf KSVZ}',fontsize=fs,rotation=trans_angle,color=line_color,ha='left',va='bottom',rotation_mode='anchor',clip_on=True)
             if DFSZ_on:
                 if thick_lines:
-                    plt.plot(m,g_x(DFSZ,m),'-',linewidth=5,color='k',zorder=0)
+                    plt.plot(m,g_x(DFSZ,m),'-',linewidth=5,color='#707070',zorder=0)
                     plt.plot(m,g_x(DFSZ,m),'-',linewidth=3,color=line_color,zorder=0)
                 else:
                     plt.plot(m,g_x(DFSZ,m),'-',linewidth=2,color=line_color,zorder=0)
@@ -439,7 +438,7 @@ class AxionPhoton():
             plt.plot([dat[0,0],dat[0,0]],[dat[0,1]/(rs1*2e-10*dat[0,0]+rs2),y2/(rs1*2e-10*dat[0,0]+rs2)],color=col,zorder=zo,lw=2)
         return
 
-    def CASTCAPP(ax,col=[0.88, 0.07, 0.24],fs=13,RescaleByMass=False,projection=True,text_on=True,text_shift=[1,1]):
+    def CASTCAPP(ax,col="#808080",fs=13,RescaleByMass=False,projection=False,text_on=False,text_shift=[1,1]):
         if RescaleByMass:
             rs1 = 1.0
             rs2 = 0.0
@@ -663,13 +662,13 @@ class AxionPhoton():
             rs2 = 1.0
             zo = 0
         dat = loadtxt("limit_data/AxionPhoton/ORGAN.txt")
-        plt.fill_between(dat[:,0],dat[:,1]/(rs1*2e-10*dat[:,0]+rs2),y2=y2,edgecolor=col,facecolor=col,zorder=0.1,lw=1)
+        plt.fill_between(dat[:,0],dat[:,1]/(rs1*2e-10*dat[:,0]+rs2),y2=y2,edgecolor='None',facecolor=col,zorder=0.1,lw=1)
 
         dat2 = loadtxt("limit_data/AxionPhoton/ORGAN-1a.txt")
-        plt.fill_between(dat2[:,0],dat2[:,1]/(rs1*2e-10*dat2[:,0]+rs2),y2=y2,edgecolor='k',facecolor=col,zorder=0.1,lw=lw)
+        plt.fill_between(dat2[:,0],dat2[:,1]/(rs1*2e-10*dat2[:,0]+rs2),y2=y2,edgecolor='None',facecolor=col,zorder=0.1,lw=lw)
 
         dat2 = loadtxt("limit_data/AxionPhoton/ORGAN-1b.txt")
-        plt.fill_between(dat2[:,0],dat2[:,1]/(rs1*2e-10*dat2[:,0]+rs2),y2=y2,edgecolor='k',facecolor=col,zorder=0.1,lw=lw)
+        plt.fill_between(dat2[:,0],dat2[:,1]/(rs1*2e-10*dat2[:,0]+rs2),y2=y2,edgecolor='None',facecolor=col,zorder=0.1,lw=lw)
 
         if projection:
             dat = loadtxt("limit_data/AxionPhoton/Projections/ORGAN_Projected.txt")
@@ -1129,7 +1128,7 @@ class AxionPhoton():
         FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,edgealpha=edgealpha,lw=lw,path_effects=line_background(1.5,'k'))
         return
 
-    def Helioscopes(ax,col=[0.5, 0.0, 0.13],fs=25,projection=False,RescaleByMass=False,text_on=True):
+    def Helioscopes(ax,col="#c0c0c0",fs=25,projection=False,RescaleByMass=False,text_on=True):
         # CAST arXiv:[1705.02290]
         y2 = ax.get_ylim()[1]
         if RescaleByMass:
@@ -1139,22 +1138,22 @@ class AxionPhoton():
             rs1 = 0.0
             rs2 = 1.0
         dat = loadtxt("limit_data/AxionPhoton/CAST_highm.txt")
-        plt.fill_between(dat[:,0],dat[:,1]/(rs1*2e-10*dat[:,0]+rs2),y2=y2,edgecolor='k',facecolor=col,zorder=1.49,lw=0.1)
-        plt.plot(dat[:,0],dat[:,1]/(rs1*2e-10*dat[:,0]+rs2),'k-',lw=1.5,zorder=1.49,alpha=1)
+        plt.fill_between(dat[:,0],dat[:,1]/(rs1*2e-10*dat[:,0]+rs2),y2=y2,edgecolor='None',facecolor=col,zorder=1.49,lw=0.1)
+        plt.plot(dat[:,0],dat[:,1]/(rs1*2e-10*dat[:,0]+rs2),'None',lw=1.5,zorder=1.49,alpha=1)
 
         mf = dat[-3,0]
         gf = dat[-3,1]
         dat = loadtxt("limit_data/AxionPhoton/CAST.txt")
-        plt.fill_between(dat[:,0],dat[:,1]/(rs1*2e-10*dat[:,0]+rs2),y2=y2,edgecolor='none',facecolor=col,zorder=1.5,lw=0.1)
-        plt.plot(dat[:,0],dat[:,1]/(rs1*2e-10*dat[:,0]+rs2),'k-',lw=1.5,zorder=1.5,alpha=1)
+        plt.fill_between(dat[:,0],dat[:,1]/(rs1*2e-10*dat[:,0]+rs2),y2=y2,edgecolor='None',facecolor=col,zorder=1.5,lw=0.1)
+        #plt.plot(dat[:,0],dat[:,1]/(rs1*2e-10*dat[:,0]+rs2),'None',lw=1.5,zorder=1.5,alpha=1)
 
         gi = 10.0**interp(log10(mf),log10(dat[:,0]),log10(dat[:,1]))/(rs1*2e-10*mf+rs2)
         plt.plot([mf,mf],[gf,gi],'k-',lw=1.5,zorder=1.5)
         if text_on==True:
             if rs1==0:
-                plt.text(1e-1,1.5e-9,r'{\bf CAST}',fontsize=fs+4,color='w',rotation=0,ha='center',va='top',clip_on=True,path_effects=line_background(1.5,'k'))
+                plt.text(1e-1,1.5e-9,r'{\bf CAST}',fontsize=fs+4,color='w',rotation=0,ha='center',va='top',clip_on=True,path_effects=line_background(1.5,'None'))
             else:
-                plt.text(4e-2,5e3,r'{\bf CAST}',fontsize=fs+4,color='w',rotation=0,ha='center',va='top',clip_on=True,path_effects=line_background(1.5,'k'))
+                plt.text(4e-2,5e3,r'{\bf CAST}',fontsize=fs+4,color='w',rotation=0,ha='center',va='top',clip_on=True,path_effects=line_background(1.5,'None'))
 
         if projection:
             # IAXO arXiv[1212.4633]
@@ -1258,7 +1257,7 @@ class AxionPhoton():
             plt.text(text_shift[0]*3.5e-7,text_shift[1]*0.6e-11/0.35,r'{\bf MWD Pol.}',fontsize=11,color='w',rotation=rotation,ha='center',clip_on=True,path_effects=line_background(1,'k'))
         return
 
-    def PulsarPolarCap(ax,text_label=r'{\bf Pulsars}',text_pos=[2e-7,4e-12],col='#039614',text_col='w',fs=13,zorder=-1,text_on=True,lw=1.5,rotation=0,edgealpha=1):
+    def PulsarPolarCap(ax,text_label=r'{\bf Pulsars}',text_pos=[2e-7,4e-12],col='#c0c0c0',text_col='w',fs=13,zorder=-1,text_on=True,lw=1.5,rotation=0,edgealpha=0):
         dat = loadtxt("limit_data/AxionPhoton/PulsarPolarCap.txt")
         FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,lw=lw,va='center',rotation=rotation,edgealpha=edgealpha,path_effects=line_background(1,'k'))
         return
@@ -1441,7 +1440,7 @@ class AxionPhoton():
 
         return
 
-    def GlobularClusters(ax,text_label=r'{\bf Globular clusters}',text_pos=[1e0,1.1e-10],col=[0.0, 0.66, 0.42],text_col='w',fs=25,zorder=0.05,text_on=True,lw=1.5,edgealpha=1):
+    def GlobularClusters(ax,text_label=r'{\bf Globular clusters}',text_pos=[1e0,1.1e-10],col="#c0c0c0",text_col='w',fs=25,zorder=0.05,text_on=True,lw=1.5,edgealpha=0):
         # Globular clusters arXiv:[1406.6053]
         dat = loadtxt("limit_data/AxionPhoton/GlobularClusters.txt")
         FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,lw=lw,va='center',edgealpha=edgealpha,path_effects=line_background(1.5,'k'))
@@ -1522,7 +1521,7 @@ class AxionPhoton():
             plt.text(text_shift[0]*1.8e6,text_shift[1]*2e-9,r'($\nu$)',fontsize=fs,color='w',rotation=0,ha='center',va='top',clip_on=True,path_effects=line_background(1,'k'))
         return
 
-    def NeutronStars(ax,col='#2ab0a3',fs=14,RescaleByMass=False,text_on=True,text_shift=[1,1],lw=1,text_col='#52a178',xskip=3,edgealpha=1):
+    def NeutronStars(ax,col='c0c0c0',fs=14,RescaleByMass=False,text_on=True,text_shift=[1,1],lw=1,text_col='#c0c0c0',xskip=3,edgealpha=1):
         # Neutron stars: Green Bank arXiv:[2004.00011]
         # Jansky VLA: 2008.01877, 2008.11188
         # Battye et al. []
@@ -1955,7 +1954,7 @@ class AxionPhoton():
 
 #==============================================================================#
 class AxionElectron():
-    def QCDAxion(ax,text_on=True,C_logwidth=10,KSVZ_on=False,DFSZ_on=True,Hadronic_on=True,fs=20,DFSZ_col='gold',KSVZ_col='#857c20',Hadronic_col='goldenrod',DFSZ_label_mass=5e-9,KSVZ_label_mass=5e-9,Hadronic_label_mass=5e-8):
+    def QCDAxion(ax,text_on=True,C_logwidth=10,KSVZ_on=True,DFSZ_on=True,Hadronic_on=True,fs=20,DFSZ_col='#c0c0c0',KSVZ_col='#c0c0c0',Hadronic_col='#c0c0c0',DFSZ_label_mass=5e-9,KSVZ_label_mass=5e-9,Hadronic_label_mass=5e-8):
         ## QCD Axion band:
         g_min,g_max = ax.get_ylim()
         m_min,m_max = ax.get_xlim()
@@ -2355,7 +2354,7 @@ class AxionNeutron():
     # this makes essentially no observable difference to the plot but it useful to remember.
     m_n = 0.93957
 
-    def QCDAxion(ax,C_logwidth=10,KSVZ_on=True,DFSZ_on=True,edgecolor='goldenrod',facecolor='gold',alpha=0.04,nlevels=50,fs=25,Mpl_lab=False,DFSZ_label_mass=1e-7,KSVZ_label_mass=1e-6):
+    def QCDAxion(ax,C_logwidth=10,KSVZ_on=True,DFSZ_on=True,edgecolor='white',facecolor='gold',alpha=0.04,nlevels=50,fs=25,Mpl_lab=False,DFSZ_label_mass=1e-7,KSVZ_label_mass=1e-6):
         ## QCD Axion band:
         g_min,g_max = ax.get_ylim()
         m_min,m_max = ax.get_xlim()
@@ -2987,7 +2986,7 @@ class Axion_fa():
         return
 
 
-    def Pulsars(ax,text_pos=[3e-15,0.11e-16],linespacing_y=0.65,col='#30693d',text_col='#30693d',text_rot=0,fs=21,zo=-6.9):
+    def Pulsars(ax,text_pos=[3e-15,0.11e-16],linespacing_y=0.65,col='#c0c0c0',text_col='#c0c0c0',text_rot=0,fs=21,zo=-6.9):
         dat = loadtxt('limit_data/fa/Pulsar.txt')
         plt.fill_between(dat[:,0],dat[:,1],color=col,zorder=zo,alpha=1)
         plt.plot(dat[:,0],dat[:,1],color='k',lw=3,alpha=1,zorder=zo)
@@ -3877,7 +3876,7 @@ class DarkPhoton():
     def CAST(ax,col='maroon',fs=19,text_on=True,lw=1.5):
         y2 = ax.get_ylim()[1]
         dat = loadtxt("limit_data/DarkPhoton/CAST.txt")
-        plt.fill_between(dat[:,0],dat[:,1],y2=y2,edgecolor=None,facecolor=col,zorder=1.1)
+        plt.fill_between(dat[:,0],dat[:,1],y2=y2,edgecolor="None",facecolor=col,zorder=1.1)
         plt.plot(dat[:,0],dat[:,1],color='k',alpha=1,zorder=1.1,lw=lw)
         if text_on:
             plt.text(0.95e-3,6e-6,r'{\bf CAST}',fontsize=fs,color='w',rotation=-59,rotation_mode='anchor',ha='center',va='center',path_effects=line_background(1.5,'k'),clip_on=True)
