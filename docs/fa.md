@@ -8,8 +8,6 @@
 ### &nbsp;
 ### &nbsp;
 ---
-
----
 [<img align="right" height="300" src="../plots/plots_png/Axion_fa_with_Projections.png">](https://github.com/cajohare/AxionLimits/raw/master/plots/plots_png/Axion_fa_with_Projections.png)
 ### Plot with projections
 ### [View Notebook (.ipynb)](https://github.com/cajohare/AxionLimits/blob/master/Axion_fa.ipynb)
@@ -17,8 +15,6 @@
 ### [Download (.png)](https://github.com/cajohare/AxionLimits/raw/master/plots/plots_png/Axion_fa_with_Projections.png)
 ### &nbsp;
 ### &nbsp;
----
-
 ---
 [<img align="right" height="300" src="../plots/plots_png/Axion_fa_ALPDM.png">](https://github.com/cajohare/AxionLimits/raw/master/plots/plots_png/Axion_fa_ALPDM.png)
 ### Cosmological ALP scenarios and recasted constraints
@@ -38,7 +34,9 @@ It must be noted that this plot and the 1/fa plot are, at best, challenging to i
 * Beam EDM: [limit](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/BeamEDM.txt), [reference](https://arxiv.org/abs/2204.01454)
 * nEDM: [limit](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/nEDM.txt), [reference](https://arxiv.org/abs/1708.06367)
 * HfH+: [limit](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/HfH.txt), [reference](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.126.171301)
-* JEDI: [limit](https://github.com/cajohare/AxionLimits/raw/master/limit_data/AxionEDM/JEDI.txt), [reference](https://arxiv.org/abs/2208.07293)
+* I2+/Ca: [limit](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/I2Ca.txt), [reference](https://arxiv.org/abs/2404.00616)
+* JEDI: [limit](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/JEDI.txt), [reference](https://arxiv.org/abs/2208.07293)
+* ONIX: [limit](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/ONIX.txt), [reference](https://arxiv.org/abs/2410.02218)
 * Rb/Quartz: [limit](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/RbQuartz.txt), [reference](https://arxiv.org/abs/2212.04413)
 * Tritium decay (not shown, below 1e-20 eV in mass): [limit](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/Tritium.txt), [reference](https://arxiv.org/abs/2303.09865)
 * Piezoaxionic effect (Projection) [N=1](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/Projections/PiezoaxionicEffect1.txt), [N=64](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/Projections/PiezoaxionicEffect64.txt), [reference](https://arxiv.org/abs/2112.11466)
@@ -52,14 +50,18 @@ It must be noted that this plot and the 1/fa plot are, at best, challenging to i
 * Black hole spins (Mehta et al.): [limit](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/BlackHoleSpins_Mehta.txt), [reference](https://arxiv.org/abs/2011.08693)
 * Black hole spins (Baryakhtar et al.) [limit](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/BlackHoleSpins_Baryakhtar.txt), [reference](https://arxiv.org/abs/2011.11646)
 * Black hole spins (Unal et al.) [limit](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/BlackHoleSpins_Unal.txt), [reference](https://arxiv.org/abs/2012.12790)
+* Black hole spins (Hoof et al.) [limit](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/BlackHoleSpins_Hoof.txt), [reference](https://arxiv.org/abs/2406.10337)
+* Black hole spins (Witte and Mummery) [limit](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/BlackHoleSpins_Witte.txt), [reference](https://arxiv.org/abs/2412.03655)
 * *Binary pulsars: [limit](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/Pulsar.txt), [reference](https://arxiv.org/abs/1708.08464)
 * GW170817 [limit](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/GW170817.txt), [reference](https://arxiv.org/abs/2105.13963)
 * *Neutron stars: [projection](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/Projections/NeutronStars.txt), [reference](https://arxiv.org/abs/1708.08464)
+* Neutron stars (cooling, Gomez-Banon et al.): [limit](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/NeutronStarCooling.txt), [reference](https://arxiv.org/abs/2408.07740)
+* Neutron stars (cooling, crust, pulsar glitches, Kumamoto et al.): [limit](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/NeutronStars_Kumamoto.txt), [reference](https://arxiv.org/abs/2410.21590)
 * NS-NS Inspiral: [projection](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/Projections/NSNS-Inspiral.txt), [reference](https://arxiv.org/abs/1708.08464)
 * NS-BH Inspiral: [projection](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/Projections/NSBH-Inspiral.txt), [reference](https://arxiv.org/abs/1708.08464)
 * Planck+BAO thermal ALP bound (gluon coupling): [limit](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/PlanckBAO.txt), [reference](https://arxiv.org/abs/2205.01637)
 * *Solar core (neutrino line): [limit](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/SolarCore.txt), [reference](https://arxiv.org/abs/1708.08464)
-* SN1987A: [limit](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/SN1987A.txt), [reference](https://arxiv.org/abs/2203.15812)
+* SN1987A: [limit](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/SN1987A.txt), [reference](https://arxiv.org/abs/2410.19902)
 * White dwarfs: [limit](https://github.com/cajohare/AxionLimits/raw/master/limit_data/fa/WhiteDwarfs.txt), [reference](https://arxiv.org/abs/2211.02661)
 
 (*) Using corrected values from [here](https://arxiv.org/abs/2102.00012)
