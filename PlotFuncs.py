@@ -166,19 +166,19 @@ def FigSetup(xlab=r'$m_a$ [eV]',ylab='',\
                  m_min = 1.0e-12,m_max = 1.0e7,\
                  lw=2.5,lfs=45,tfs=25,tickdir='out',figsize=(16.5,11),\
                  Grid=False,Shape='Rectangular',\
-                 mathpazo=False,TopAndRightTicks=False,majorticklength=13,minorticklength=10,\
+                 mathpazo=True,TopAndRightTicks=False,majorticklength=13,minorticklength=10,\
                 xtick_rotation=20.0,tick_pad=8,x_labelpad=10,y_labelpad=10,\
              FrequencyAxis=False,N_Hz=1,upper_xlabel=r"$\nu_a$ [Hz]",**freq_kwargs):
 
     plt.rcParams['axes.linewidth'] = lw
     plt.rc('text', usetex=True)
-    plt.rc('font', family='serif',size=tfs)
+    plt.rc('font', family='sans-serif',size=tfs)
 
     if mathpazo:
             plt.rcParams.update({
         "text.usetex": True,
-        "font.family": "serif",
-        "font.serif": ["Palatino"],
+        "font.family": "sans-serif",
+        "font.serif": ["Arial"],
             })
 
     if Shape=='Wide':
@@ -3391,11 +3391,14 @@ class DarkPhoton():
             tick_rotation = 20,width=20,height=10,upper_tickdir='out'):
 
         plt.rcParams['axes.linewidth'] = lw
-        plt.rc('text', usetex=True)
-        plt.rc('font', family='serif',size=tfs)
+        plt.rc('text', usetex=False)
+        plt.rc('font', family='sans-serif',size=tfs)
+
+        # if mathpazo:
+        #     plt.rcParams.update({"text.usetex": True,"font.family": "serif","font.serif": ["Palatino"],})
 
         if mathpazo:
-            plt.rcParams.update({"text.usetex": True,"font.family": "serif","font.serif": ["Palatino"],})
+            plt.rcParams.update({"text.usetex": False,"font.family": "sans-serif","font.sans-serif": ["Arial"],})#ださい
 
 
         if Shape=='Wide':
@@ -3415,7 +3418,7 @@ class DarkPhoton():
 
 
         ax.set_yscale('log')
-        ax.set_xscale('log')
+        ax.set_xscale('log') ###
         ax.set_xlim([m_min,m_max])
         ax.set_ylim([chi_min,chi_max])
 
@@ -3442,7 +3445,7 @@ class DarkPhoton():
 
 
 
-            ax2.set_xscale('log')
+            ax2.set_xscale('linear') ###
             ax2.tick_params(which='major',direction=upper_tickdir,width=2.5,length=13,pad=7)
             ax2.tick_params(which='minor',direction=upper_tickdir,width=1,length=10)
             locmaj = mpl.ticker.LogLocator(base=10.0, subs=(1.0, ), numticks=50)
@@ -4031,7 +4034,7 @@ class DarkPhoton():
             plt.text(0.95e-3,1e-10,r'{\bf QC}',fontsize=fs,color=col,rotation=-90,rotation_mode='anchor',ha='center',va='center',clip_on=True)
         return
 
-    def DarkMatter(ax,Witte_col='royalblue',Caputo_col='dodgerblue',Arias_col='navy',fs=20,projection=True,text_on=True):
+    def DarkMatter(ax,Witte_col='royalblue',Caputo_col='dodgerblue',Arias_col='navy',fs=20,projection=True,text_on=True,lw=0.5):
         y2 = ax.get_ylim()[1]
         zo = 0.3
         pek=[pe.Stroke(linewidth=7, foreground='k'), pe.Normal()]
